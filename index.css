@@ -32,7 +32,7 @@ body {
     display: flex;
     width: 100%;
     height: 60px;
-    background: rgba(0,0,0,0.7);
+    background: rgba(0, 0, 0, 0.7);
 }
 
 .navbar ul {
@@ -84,8 +84,9 @@ section#about {
 }
 
 section#service {
-    /*background: image('./res/rotoscope_alonemanuel.gif');*/
-    background: url('https://source.unsplash.com/K2tdx2mFDHc/1600x900') no-repeat center center/cover;;
+    background: url("./res/draft03_chars.jpg") no-repeat center center/cover;
+    /*background: image('./res/rotoscope_alonemanuel.gif');;*/
+    /*background: url('https://source.unsplash.com/K2tdx2mFDHc/1600x900') no-repeat center center/cover;;*/
 }
 
 section#contact {
