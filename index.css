@@ -92,3 +92,18 @@ section#service {
 section#contact {
     background: url('https://source.unsplash.com/2aAHlfDOhJM/1600x900') no-repeat center center/cover;;
 }
+
+section#im0 {
+    background: url("./res/Artboard 1.png") no-repeat center center/cover;
+}
+
+section#im1 {
+    background: url("./res/Artboard 2.png") no-repeat center center/cover;
+}
+
+section#im2 {
+    background: url("./res/Artboard 3.png") no-repeat center center/cover;
+}
+section#im2 {
+    background: url("./res/yellow_car.gif") no-repeat center center/cover;
+}

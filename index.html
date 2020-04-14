@@ -2,6 +2,7 @@
 <script src="index.js" type="text/javascript"></script>
 <audio autoplay id="scrollaudio" loop
        src="./res/shoshana_song.wav"></audio>
+
 <div class="container" id="container">
     <!--    <nav class="navbar">-->
     <!--        <ul>-->
@@ -13,17 +14,45 @@
     <!--    </nav>-->
 
     <section id="home">
-<!--        <h1>Welcome To My Site</h1>-->
-<!--        <p class="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi, quis!</p>-->
+        <!--        <h1>Welcome To My Site</h1>-->
+        <!--        <p class="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi, quis!</p>-->
     </section>
     <section id="about">
-<!--        <h1>About</h1>-->
-<!--        <p class="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi, quis!</p>-->
+        <!--        <h1>About</h1>-->
+        <!--        <p class="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi, quis!</p>-->
     </section>
     <section id="service">
-<!--        <h1>Service</h1>-->
-<!--        <p class="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi, quis!</p>-->
+        <!--        <h1>Service</h1>-->
+        <!--        <p class="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi, quis!</p>-->
     </section>
     <section id="contact">
     </section>
+    <section id="im0">
+    </section>
+    <section id="im1">
+    </section>
+    <section id="im2">
+    </section>
 </div>
+
+<script>
+    var flag = true;
+    var container = document.getElementById("container");
+    var audioElm = document.getElementById("scrollaudio");
+    var height = 0;
+    console.log(audioElm.volume);
+    window.document.addEventListener('click', function () {
+        audioElm.volume = flag ? 0 : 1;
+        flag = !flag;
+        console.log(audioElm.volume);
+    });
+    container.addEventListener('scroll', function () {
+        var numOfSections = container.getElementsByTagName('section').length;
+        var pageHeight = (numOfSections - 1) * container.offsetHeight
+        var currHeight = container.scrollTop;
+        console.log(pageHeight);
+        console.log(currHeight)
+        audioElm.volume = Math.min(currHeight / pageHeight, 1);
+        console.log(audioElm.volume)
+    });
+</script>
