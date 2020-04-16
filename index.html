@@ -37,10 +37,11 @@
     init_volume();
 
     // init scripting variables
-    var flag = true;
+    var isMuted = false;
     var numOfSections = container.getElementsByTagName('section').length;
     var pageHeight = (numOfSections - 1) * container.offsetHeight;
     var sectionHeight = pageHeight / numOfSections;
+    var currSection = 0;
     var currHeight = 0;
     const LAST_SEC_INDEX = 4;
 
@@ -52,19 +53,22 @@
 
 
     window.document.addEventListener('click', function () {
-        var newVol = flag ? 0 : 1;
-        for (var elm of audioElms) {
-            elm.volume = newVol;
-            console.log(elm.volume);
-        }
-        flag = !flag;
+        isMuted = !isMuted;
+        audioElms[currSection].volume = isMuted ? 0 : 1;
+
+        // var newVol = isMuted ? 0 : 1;
+        // for (var elm of audioElms) {
+        //     elm.volume = newVol;
+        //     console.log(elm.volume);
+        // }
     });
 
     container.addEventListener('scroll', function () {
         currHeight = container.scrollTop;
-        var currSection = Math.min(Math.floor(currHeight / sectionHeight), LAST_SEC_INDEX);
+        currSection = Math.min(Math.floor(currHeight / sectionHeight), LAST_SEC_INDEX);
+        var newVolume = isMuted ? 0 : 1;
         for (let i = 0; i < numOfSections; i++) {
-            audioElms[i].volume = (i == currSection) ? 1 : 0;
+            audioElms[i].volume = (i == currSection) ? newVolume : 0;
             // console.log(elm.volume);
         }
 
