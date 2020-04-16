@@ -44,54 +44,46 @@
 
     var pageHeight = numOfSections * container.offsetHeight;
     var sectionHeight = pageHeight / numOfSections;
-    var currSection = 0;
+    var currFrame = 0;
     var currHeight = 0;
     var inInit = true;
     const LAST_SEC_INDEX = numOfFrames;
     const HEIGHT_ACCURACY_FACTOR = 100;
 
 
-    function init_volume() {
-        console.log("initting");
-        audioElms[0].muted = false;
-        for (let i = 0; i < numOfFrames; i++) {
-            audioElms[i].oncanplaythrough = function () {
-                console.log("Can play through track " + i);
-                audioElms[i].play();
-            };
+    function unmuteAll() {
+        for (let elm of audioElms) {
+            elm.mute = false;
         }
-
-    }
-
-    function playAll() {
-        console.log("playing");
-        audioElms[0].muted = false;
-        for (let i = 0; i < numOfFrames; i++) {
-            audioElms[i].play();
-        }
-
     }
 
     window.document.addEventListener('click', function () {
-
         if (inInit) {
-            playAll();
+            unmuteAll();
+            audioElms[0].play();
             inInit = false;
         }
 
         isMuted = !isMuted;
-        audioElms[currSection].muted = isMuted;
+        if (isMuted) {
+            audioElms[currFrame].pause();
+        } else {
+            audioElms[currFrame].play();
+        }
         console.log("Clicked and isMuted is now: " + isMuted);
     });
 
+
     container.addEventListener('scroll', function () {
-
-
         currHeight = container.scrollTop;
-        currSection = Math.max(Math.min(Math.floor((currHeight+HEIGHT_ACCURACY_FACTOR) / sectionHeight), LAST_SEC_INDEX) - 1, 0);
-        for (let i = 0; i < numOfFrames; i++) {
-            audioElms[i].muted = (i == currSection) ? isMuted : true;
+        var newFrame = Math.max(Math.min(Math.floor((currHeight + HEIGHT_ACCURACY_FACTOR) / sectionHeight), LAST_SEC_INDEX) - 1, 0);
+        if (!isMuted) {
+            if (newFrame !== currFrame) {
+                audioElms[currFrame].pause();
+                audioElms[newFrame].play();
+            }
+            currFrame = newFrame;
+            console.log("currf: " + currFrame);
         }
-        console.log("Curr section is: " + currSection + "\nCurr volume is: " + audioElms[currSection].volume);
     });
 </script>
