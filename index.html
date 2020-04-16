@@ -56,14 +56,17 @@
 
     function unmuteAll() {
         for (let elm of audioElms) {
-            elm.mute = false;
+            elm.muted = false;
+            elm.volume=1;
         }
     }
 
     window.document.addEventListener('click', function () {
+        // playfirst();
+
         if (inInit) {
             unmuteAll();
-            audioElms[0].play();
+            audioElms[currFrame].play();
             inInit = false;
         }
 
@@ -74,21 +77,22 @@
             audioElms[currFrame].play();
         }
         showSnackBar();
-        console.log("Cl icked and isMuted is now: " + isMuted);
+        console.log("Clicked and isMuted is now: " + isMuted);
     });
 
 
     container.addEventListener('scroll', function () {
         currHeight = container.scrollTop;
-        var newFrame = Math.max(Math.min(Math.floor((currHeight + HEIGHT_ACCURACY_FACTOR) / sectionHeight), LAST_SEC_INDEX) - 1, 0);
+        let newFrame = Math.max(Math.min(Math.floor((currHeight + HEIGHT_ACCURACY_FACTOR) / sectionHeight), LAST_SEC_INDEX) - 1, 0);
         if (!isMuted) {
             if (newFrame !== currFrame) {
+                console.log("Pausing frame " + currFrame + " and playing frame " + newFrame);
                 audioElms[currFrame].pause();
                 audioElms[newFrame].play();
             }
-            currFrame = newFrame;
-            console.log("currf: " + currFrame);
         }
+        console.log("currf: " + currFrame);
+        currFrame = newFrame;
     });
 
     function showSnackBar() {
@@ -99,9 +103,9 @@
         x.textContent = isMuted ? "muted" : "unmuted";
         x.className = "show";
 
-        // After 3 seconds, remove the show class from DIV
+        // After 1.5 seconds, remove the show class from DIV
         setTimeout(function () {
             x.className = x.className.replace("show", "");
-        }, 1000);
+        }, 2000);
     }
 </script>
