@@ -10,6 +10,9 @@
 <audio id="tr4_beach" loop muted
        src="res/audio/audio1/tr4_beach.mp3"></audio>
 
+<div id="snackbar">muted</div>
+
+
 <div class="container" id="container">
     <section id="splash">
         <h1>start by clicking me</h1>
@@ -70,7 +73,8 @@
         } else {
             audioElms[currFrame].play();
         }
-        console.log("Clicked and isMuted is now: " + isMuted);
+        showSnackBar();
+        console.log("Cl icked and isMuted is now: " + isMuted);
     });
 
 
@@ -86,4 +90,18 @@
             console.log("currf: " + currFrame);
         }
     });
+
+    function showSnackBar() {
+        // Get the snackbar DIV
+        var x = document.getElementById("snackbar");
+
+        // Add the "show" class to DIV
+        x.textContent = isMuted ? "muted" : "unmuted";
+        x.className = "show";
+
+        // After 3 seconds, remove the show class from DIV
+        setTimeout(function () {
+            x.className = x.className.replace("show", "");
+        }, 1000);
+    }
 </script>
