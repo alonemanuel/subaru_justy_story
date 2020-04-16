@@ -25,15 +25,15 @@ body {
     font-size: 1.5rem;
 }
 
-.navbar {
-    position: fixed;
-    top: 0;
-    z-index: 1;
-    display: flex;
-    width: 100%;
-    height: 60px;
-    background: rgba(0, 0, 0, 0.7);
-}
+/*.navbar {*/
+/*    position: fixed;*/
+/*    top: 0;*/
+/*    z-index: 1;*/
+/*    display: flex;*/
+/*    width: 100%;*/
+/*    height: 60px;*/
+/*    background: rgba(0, 0, 0, 0.7);*/
+/*}*/
 
 .navbar ul {
     display: flex;
@@ -74,36 +74,22 @@ section h1 {
     font-size: 4rem;
 }
 
-/* Section Images */
-section#home {
-    background: url('https://source.unsplash.com/bZZp1PmHI0E/1600x900') no-repeat center center/cover;;
+section#frame0 {
+    background: url("./res/images/frame0.png") no-repeat center center/cover;
 }
 
-section#about {
-    background: url('https://source.unsplash.com/VRxo0yY-gyM/1600x900') no-repeat center center/cover;;
+section#frame1 {
+    background: url("./res/images/frame1.png") no-repeat center center/cover;
 }
 
-section#service {
-    background: url("./res/draft03_chars.jpg") no-repeat center center/cover;
-    /*background: image('./res/rotoscope_alonemanuel.gif');;*/
-    /*background: url('https://source.unsplash.com/K2tdx2mFDHc/1600x900') no-repeat center center/cover;;*/
-}
-
-section#contact {
-    background: url('https://source.unsplash.com/2aAHlfDOhJM/1600x900') no-repeat center center/cover;;
-}
-
-section#im0 {
-    background: url("./res/Artboard 1.png") no-repeat center center/cover;
-}
-
-section#im1 {
-    background: url("./res/Artboard 2.png") no-repeat center center/cover;
-}
-
-section#im2 {
-    background: url("./res/Artboard 3.png") no-repeat center center/cover;
-}
-section#im2 {
+section#frame2 {
     background: url("./res/yellow_car.gif") no-repeat center center/cover;
+}
+
+section#frame3 {
+    background: url("./res/images/frame3.png") no-repeat center center/cover;
+}
+
+section#frame4 {
+    background: url("./res/images/frame4.png") no-repeat center center/cover;
 }

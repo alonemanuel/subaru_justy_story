@@ -1,58 +1,76 @@
 <link href="index.css" rel="stylesheet">
 <script src="index.js" type="text/javascript"></script>
-<audio autoplay id="scrollaudio" loop
-       src="./res/shoshana_song.wav"></audio>
+<audio autoplay id="tr0_playground" loop
+       src="res/audio/audio1/tr0_playground.mp3"></audio>
+<audio autoplay id="tr1_falafel" loop
+       src="res/audio/audio1/tr1_falafel.mp3"></audio>
+<audio autoplay id="tr2_cars" loop
+       src="res/audio/audio1/tr2_cars.mp3"></audio>
+<audio autoplay id="tr3_ring" loop
+       src="res/audio/audio1/tr3_ringing.mp3"></audio>
+<audio autoplay id="tr4_beach" loop
+       src="res/audio/audio1/tr4_beach.mp3"></audio>
 
 <div class="container" id="container">
-    <!--    <nav class="navbar">-->
-    <!--        <ul>-->
-    <!--            <li><a href="#home">Home</a></li>-->
-    <!--            <li><a href="#about">About</a></li>-->
-    <!--            <li><a href="#service">Service</a></li>-->
-    <!--            <li><a href="#contact">Contact</a></li>-->
-    <!--        </ul>-->
-    <!--    </nav>-->
-
-    <section id="home">
-        <!--        <h1>Welcome To My Site</h1>-->
-        <!--        <p class="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi, quis!</p>-->
+    <section id="frame0">
     </section>
-    <section id="about">
-        <!--        <h1>About</h1>-->
-        <!--        <p class="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi, quis!</p>-->
+    <section id="frame1">
     </section>
-    <section id="service">
-        <!--        <h1>Service</h1>-->
-        <!--        <p class="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi, quis!</p>-->
+    <section id="frame2">
     </section>
-    <section id="contact">
+    <section id="frame3">
     </section>
-    <section id="im0">
-    </section>
-    <section id="im1">
-    </section>
-    <section id="im2">
+    <section id="frame4">
     </section>
 </div>
 
 <script>
-    var flag = true;
+
+    // init audio elements
     var container = document.getElementById("container");
-    var audioElm = document.getElementById("scrollaudio");
-    var height = 0;
-    console.log(audioElm.volume);
+    var tr0PlaygroundElm = document.getElementById("tr0_playground");
+    var tr1FalafelElm = document.getElementById("tr1_falafel");
+    var tr2CarsElm = document.getElementById("tr2_cars");
+    var tr3RingElm = document.getElementById("tr3_ring");
+    var tr4BeachElm = document.getElementById("tr4_beach");
+    var audioElms = [tr0PlaygroundElm, tr1FalafelElm, tr2CarsElm, tr3RingElm, tr4BeachElm];
+    init_volume();
+
+    // init scripting variables
+    var flag = true;
+    var numOfSections = container.getElementsByTagName('section').length;
+    var pageHeight = (numOfSections - 1) * container.offsetHeight;
+    var sectionHeight = pageHeight / numOfSections;
+    var currHeight = 0;
+    const LAST_SEC_INDEX = 4;
+
+    function init_volume() {
+        for (var elm of audioElms.slice(1)) {
+            elm.volume = 0;
+        }
+    }
+
+
     window.document.addEventListener('click', function () {
-        audioElm.volume = flag ? 0 : 1;
+        var newVol = flag ? 0 : 1;
+        for (var elm of audioElms) {
+            elm.volume = newVol;
+            console.log(elm.volume);
+        }
         flag = !flag;
-        console.log(audioElm.volume);
     });
+
     container.addEventListener('scroll', function () {
-        var numOfSections = container.getElementsByTagName('section').length;
-        var pageHeight = (numOfSections - 1) * container.offsetHeight
-        var currHeight = container.scrollTop;
-        console.log(pageHeight);
+        currHeight = container.scrollTop;
+        var currSection = Math.min(Math.floor(currHeight / sectionHeight), LAST_SEC_INDEX);
+        for (let i = 0; i < numOfSections; i++) {
+            audioElms[i].volume = (i == currSection) ? 1 : 0;
+            // console.log(elm.volume);
+        }
+
         console.log(currHeight)
-        audioElm.volume = Math.min(currHeight / pageHeight, 1);
-        console.log(audioElm.volume)
+        console.log("Curr section is: " + currSection);
+        // audioElm.volume = Math.min(currHeight / pageHeight, 1);
+        // console.log(audioElm.volume)
     });
 </script>
