@@ -1,17 +1,19 @@
 <link href="index.css" rel="stylesheet">
-<script src="index.js" type="text/javascript"></script>
-<audio autoplay id="tr0_playground" loop
+<audio id="tr0_playground" loop muted
        src="res/audio/audio1/tr0_playground.mp3"></audio>
-<audio autoplay id="tr1_falafel" loop
+<audio id="tr1_falafel" loop muted
        src="res/audio/audio1/tr1_falafel.mp3"></audio>
-<audio autoplay id="tr2_cars" loop
+<audio id="tr2_cars" loop muted
        src="res/audio/audio1/tr2_cars.mp3"></audio>
-<audio autoplay id="tr3_ring" loop
+<audio id="tr3_ring" loop muted
        src="res/audio/audio1/tr3_ringing.mp3"></audio>
-<audio autoplay id="tr4_beach" loop
+<audio id="tr4_beach" loop muted
        src="res/audio/audio1/tr4_beach.mp3"></audio>
 
 <div class="container" id="container">
+    <section id="splash">
+        <h1>start by clicking me</h1>
+    </section>
     <section id="frame0">
     </section>
     <section id="frame1">
@@ -34,47 +36,62 @@
     var tr3RingElm = document.getElementById("tr3_ring");
     var tr4BeachElm = document.getElementById("tr4_beach");
     var audioElms = [tr0PlaygroundElm, tr1FalafelElm, tr2CarsElm, tr3RingElm, tr4BeachElm];
-    init_volume();
 
     // init scripting variables
-    var isMuted = false;
+    var isMuted = true;
     var numOfSections = container.getElementsByTagName('section').length;
-    var pageHeight = (numOfSections - 1) * container.offsetHeight;
+    var numOfFrames = numOfSections - 1;
+
+    var pageHeight = numOfSections * container.offsetHeight;
     var sectionHeight = pageHeight / numOfSections;
     var currSection = 0;
     var currHeight = 0;
-    const LAST_SEC_INDEX = 4;
+    var inInit = true;
+    const LAST_SEC_INDEX = numOfFrames;
+    const HEIGHT_ACCURACY_FACTOR = 100;
+
 
     function init_volume() {
-        for (var elm of audioElms.slice(1)) {
-            elm.volume = 0;
+        console.log("initting");
+        audioElms[0].muted = false;
+        for (let i = 0; i < numOfFrames; i++) {
+            audioElms[i].oncanplaythrough = function () {
+                console.log("Can play through track " + i);
+                audioElms[i].play();
+            };
         }
+
     }
 
+    function playAll() {
+        console.log("playing");
+        audioElms[0].muted = false;
+        for (let i = 0; i < numOfFrames; i++) {
+            audioElms[i].play();
+        }
+
+    }
 
     window.document.addEventListener('click', function () {
-        isMuted = !isMuted;
-        audioElms[currSection].volume = isMuted ? 0 : 1;
 
-        // var newVol = isMuted ? 0 : 1;
-        // for (var elm of audioElms) {
-        //     elm.volume = newVol;
-        //     console.log(elm.volume);
-        // }
+        if (inInit) {
+            playAll();
+            inInit = false;
+        }
+
+        isMuted = !isMuted;
+        audioElms[currSection].muted = isMuted;
+        console.log("Clicked and isMuted is now: " + isMuted);
     });
 
     container.addEventListener('scroll', function () {
-        currHeight = container.scrollTop;
-        currSection = Math.min(Math.floor(currHeight / sectionHeight), LAST_SEC_INDEX);
-        var newVolume = isMuted ? 0 : 1;
-        for (let i = 0; i < numOfSections; i++) {
-            audioElms[i].volume = (i == currSection) ? newVolume : 0;
-            // console.log(elm.volume);
-        }
 
-        console.log(currHeight)
-        console.log("Curr section is: " + currSection);
-        // audioElm.volume = Math.min(currHeight / pageHeight, 1);
-        // console.log(audioElm.volume)
+
+        currHeight = container.scrollTop;
+        currSection = Math.max(Math.min(Math.floor((currHeight+HEIGHT_ACCURACY_FACTOR) / sectionHeight), LAST_SEC_INDEX) - 1, 0);
+        for (let i = 0; i < numOfFrames; i++) {
+            audioElms[i].muted = (i == currSection) ? isMuted : true;
+        }
+        console.log("Curr section is: " + currSection + "\nCurr volume is: " + audioElms[currSection].volume);
     });
 </script>
