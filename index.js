@@ -1,12 +1,16 @@
-
 // init audio elements
 var container = document.getElementById("container");
-var tr0PlaygroundElm = document.getElementById("tr0_playground");
-var tr1FalafelElm = document.getElementById("tr1_falafel");
-var tr2CarsElm = document.getElementById("tr2_cars");
-var tr3RingElm = document.getElementById("tr3_ring");
-var tr4BeachElm = document.getElementById("tr4_beach");
-var audioElms = [tr0PlaygroundElm, tr1FalafelElm, tr2CarsElm, tr3RingElm, tr4BeachElm];
+var tr0NightElm = document.getElementById("tr0_night");
+var tr1PlaygroundElm = document.getElementById("tr1_playground");
+var tr2FalafelElm = document.getElementById("tr2_falafel");
+var tr3CarsElm = document.getElementById("tr3_cars");
+var tr4RingElm = document.getElementById("tr4_ringing");
+var tr41RingElm = document.getElementById("tr4_ringing");
+var tr42RingElm = document.getElementById("tr4_ringing");
+var tr43RingElm = document.getElementById("tr4_ringing");
+var tr5BeachElm = document.getElementById("tr5_beach");
+var tr6SuburbElm = document.getElementById("tr6_suburb");
+var audioElms = [tr0NightElm, tr1PlaygroundElm, tr2FalafelElm, tr3CarsElm, tr4RingElm, tr41RingElm, tr42RingElm, tr43RingElm, tr5BeachElm, tr6SuburbElm];
 
 // init scripting variables
 var isMuted = true;
@@ -25,12 +29,21 @@ const HEIGHT_ACCURACY_FACTOR = 100;
 function unmuteAll() {
     for (let elm of audioElms) {
         elm.muted = false;
-        elm.volume=1;
+        elm.volume = 1;
+    }
+}
+
+function lower_frame3() {
+    let currVol = tr31RingElm.volume / 2;
+    for (let elm in [tr31RingElm, tr32RingElm, tr33RingElm]) {
+        elm.volume = currVol;
+        currVol = currVol / 2;
+        // doesn't work
+
     }
 }
 
 window.document.addEventListener('click', function () {
-    // playfirst();
 
     if (inInit) {
         unmuteAll();
@@ -45,7 +58,6 @@ window.document.addEventListener('click', function () {
         audioElms[currFrame].play();
     }
     showSnackBar();
-    console.log("Clicked and isMuted is now: " + isMuted);
 });
 
 
@@ -54,12 +66,11 @@ container.addEventListener('scroll', function () {
     let newFrame = Math.max(Math.min(Math.floor((currHeight + HEIGHT_ACCURACY_FACTOR) / sectionHeight), LAST_SEC_INDEX) - 1, 0);
     if (!isMuted) {
         if (newFrame !== currFrame) {
-            console.log("Pausing frame " + currFrame + " and playing frame " + newFrame);
             audioElms[currFrame].pause();
             audioElms[newFrame].play();
+            console.log("currf: " + currFrame);
         }
     }
-    console.log("currf: " + currFrame);
     currFrame = newFrame;
 });
 

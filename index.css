@@ -65,8 +65,9 @@ section h1 {
     font-size: 4rem;
 }
 
-section#splash{
-    background: white;
+section#splash {
+
+    background: url("./res/images/splash.png") no-repeat center center/cover;
 }
 
 section#frame0 {
@@ -76,19 +77,34 @@ section#frame0 {
 section#frame1 {
     background: url("./res/images/frame1.png") no-repeat center center/cover;
 }
-
-section#frame2 {
-    background: url("./res/yellow_car.gif") no-repeat center center/cover;
+section#frame2{
+    background: url("./res/images/frame2.png") no-repeat center center/cover;
 }
-
 section#frame3 {
-    background: url("./res/images/frame3.png") no-repeat center center/cover;
+    background: url("./res/images/frame3.gif") no-repeat center center/cover;
 }
 
 section#frame4 {
     background: url("./res/images/frame4.png") no-repeat center center/cover;
 }
 
+section#frame41 {
+    background: url("./res/images/frame4_1.png") no-repeat center center/cover;
+}
+
+section#frame42 {
+    background: url("./res/images/frame4_2.png") no-repeat center center/cover;
+}
+
+section#frame43 {
+    background: url("./res/images/frame4_3.png") no-repeat center center/cover;
+}
+section#frame5 {
+    background: url("./res/images/frame5.gif") no-repeat center center/cover;
+}
+section#frame6{
+    background: url("./res/images/frame6.png") no-repeat center center/cover;
+}
 
 /* The snackbar - position it at the bottom and in the middle of the screen */
 #snackbar {
@@ -117,21 +133,45 @@ section#frame4 {
 
 /* Animations to fade the snackbar in and out */
 @-webkit-keyframes fadein {
-    from {bottom: 0; opacity: 0;}
-    to {bottom: 30px; opacity: 1;}
+    from {
+        bottom: 0;
+        opacity: 0;
+    }
+    to {
+        bottom: 30px;
+        opacity: 1;
+    }
 }
 
 @keyframes fadein {
-    from {bottom: 0; opacity: 0;}
-    to {bottom: 30px; opacity: 1;}
+    from {
+        bottom: 0;
+        opacity: 0;
+    }
+    to {
+        bottom: 30px;
+        opacity: 1;
+    }
 }
 
 @-webkit-keyframes fadeout {
-    from {bottom: 30px; opacity: 1;}
-    to {bottom: 0; opacity: 0;}
+    from {
+        bottom: 30px;
+        opacity: 1;
+    }
+    to {
+        bottom: 0;
+        opacity: 0;
+    }
 }
 
 @keyframes fadeout {
-    from {bottom: 30px; opacity: 1;}
-    to {bottom: 0; opacity: 0;}
+    from {
+        bottom: 30px;
+        opacity: 1;
+    }
+    to {
+        bottom: 0;
+        opacity: 0;
+    }
 }
