@@ -12,6 +12,19 @@ var tr5BeachElm = document.getElementById("tr5_beach");
 var tr6SuburbElm = document.getElementById("tr6_suburb");
 var audioElms = [tr0NightElm, tr1PlaygroundElm, tr2FalafelElm, tr3CarsElm, tr4RingElm, tr41RingElm, tr42RingElm, tr43RingElm, tr5BeachElm, tr6SuburbElm];
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 // init scripting variables
 var isMuted = true;
 var numOfSections = container.getElementsByTagName('section').length;
