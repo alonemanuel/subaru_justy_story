@@ -1,0 +1,186 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #333;
+    color: black;
+    height: 100vh;
+    line-height: 1.6;
+    overflow: hidden;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    /* CSS Smooth Scroll */
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+}
+
+.lead {
+    font-size: 1.5rem;
+}
+
+
+.navbar ul {
+    display: flex;
+    list-style: none;
+    width: 100%;
+    justify-content: center;
+}
+
+.navbar ul li {
+    margin: 0 1rem;
+    padding: 1rem;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #f4f4f4;
+}
+
+.navbar ul li a:hover {
+    color: skyblue;
+}
+
+
+section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    height: 100vh;
+
+    /* Scroll Snap */
+    scroll-snap-align: center;
+}
+
+section h1 {
+    font-size: 4rem;
+}
+
+section#splash {
+
+    background: url("./res/images/splash.png") no-repeat center center/cover;
+}
+
+section#f0_night {
+    background: url("./res/images/frame0.png") no-repeat center center/cover;
+}
+
+section#f1_playground {
+    background: url("./res/images/frame1.png") no-repeat center center/cover;
+}
+
+section#f2_falafel {
+    background: url("./res/images/frame2.png") no-repeat center center/cover;
+}
+
+section#f3_cars {
+    background: url("./res/images/frame3.gif") no-repeat center center/cover;
+}
+
+section#f4_tomer {
+    background: url("./res/images/frame4.gif") no-repeat center center/cover;
+}
+
+section#f5_ringlowest {
+    background: url("./res/images/frame5.png") no-repeat center center/cover;
+}
+
+section#f51_ringlow {
+    background: url("./res/images/frame5_1.png") no-repeat center center/cover;
+}
+
+section#f52_ringmid {
+    background: url("./res/images/frame5_2.png") no-repeat center center/cover;
+}
+
+section#f53_ringhigh {
+    background: url("./res/images/frame5_3.png") no-repeat center center/cover;
+}
+
+section#f6_beach {
+    background: url("./res/images/frame6.gif") no-repeat center center/cover;
+}
+
+section#f7_suburb {
+    background: url("./res/images/frame7.png") no-repeat center center/cover;
+}
+
+/* The snackbar - position it at the bottom and in the middle of the screen */
+#snackbar {
+    visibility: hidden; /* Hidden by default. Visible on click */
+    /*min-width: 250px; !* Set a default minimum width *!*/
+    /*margin-left: -125px; !* Divide value of min-width by 2 *!*/
+    background-color: #333; /* Black background color */
+    color: #fff; /* White text color */
+    text-align: center; /* Centered text */
+    border-radius: 64px; /* Rounded borders */
+    padding: 16px; /* Padding */
+    position: fixed; /* Sit on top of the screen */
+    z-index: 1; /* Add a z-index if needed */
+    left: 50%; /* Center the snackbar */
+    bottom: 30px; /* 30px from the bottom */
+}
+
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+#snackbar.show {
+    visibility: visible; /* Show the snackbar */
+    /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+    However, delay the fade out process for 2.5 seconds */
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 1.5s;
+    animation: fadein 0.5s, fadeout 0.5s 1.5s;
+}
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+    from {
+        bottom: 0;
+        opacity: 0;
+    }
+    to {
+        bottom: 30px;
+        opacity: 1;
+    }
+}
+
+@keyframes fadein {
+    from {
+        bottom: 0;
+        opacity: 0;
+    }
+    to {
+        bottom: 30px;
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadeout {
+    from {
+        bottom: 30px;
+        opacity: 1;
+    }
+    to {
+        bottom: 0;
+        opacity: 0;
+    }
+}
+
+@keyframes fadeout {
+    from {
+        bottom: 30px;
+        opacity: 1;
+    }
+    to {
+        bottom: 0;
+        opacity: 0;
+    }
+}
