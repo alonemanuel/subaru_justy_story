@@ -1,1 +1,0 @@
-# subaru_justy_story
